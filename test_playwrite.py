@@ -5,14 +5,6 @@ from playwright.sync_api import Page, expect, Playwright
 import time
 
 
-@pytest.fixture
-def firefox_setup(playwright:Playwright):
-    browser = playwright.firefox.launch(headless=False)
-    firefox_page = browser.new_page()
-    return  firefox_page
-
-
-
 def test_playwright(playwright):
     browser = playwright.chromium.launch(headless=False)
     context = browser.new_context()
@@ -60,4 +52,6 @@ def test_firefox_browser(firefox_setup):
     page.get_by_role("button", name="Sign In").click()
     expect(page.get_by_text("Incorrect username/password.")).to_be_visible()
     time.sleep(5)
-    #
+
+
+
