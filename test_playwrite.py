@@ -26,12 +26,14 @@ def test_locators(page:Page):
     page.get_by_label("Username:").fill("rahulshettyacademy")
     page.get_by_label("Password:").fill("learning")
     page.get_by_role("combobox").select_option("teach")
-    # Css selector syntax: '#<id>'  OR '.<class name>'
+
+
+    # Css selector syntax: '#<id>'  OR '.<class name>' OR tegName
     # page.locator("#terms").click()
     page.get_by_role('checkbox', name='terms').click()
     page.get_by_role("link", name="terms and conditions").click()
     page.get_by_role("button", name="Sign In").click()
-    time.sleep(5)
+
 
 def test_wrong_login(page:Page):
     page.goto("https://rahulshettyacademy.com/loginpagePractise/")
