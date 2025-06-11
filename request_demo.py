@@ -5,34 +5,66 @@
 """
 
 
-
 import requests
 import json
+import re
+
 
 url = 'https://api.restful-api.dev/objects'
 
 d = json.dumps({
-    "id": 50,
    "name": "RealmeXT",
-   "data": {
-      "year": 2225,
-      "price": 4444.99,
-      "CPU model": "Intel Core i11",
-      "Hard disk size": "64 GB"
-   }
-})
+   "data": {"year": 2020, "price": 500000}})
+
 
 # # POST
-rp = requests.post(url, data=d, headers= {"content-type": "application/json"})
-print(rp.content)
+r = requests.post(url, data=d, headers= {"content-type": "application/json"})
+text = r.text
+print('POST')
+print(text)
 
-# rp = requests.put(url, data=dp, headers={"content-type": "application/json"})
-# print(rp.content)
+print('Header')
+print(r.headers)
 
-# created obj ID : ff80818196f2a23f01975efd41c8682e
 
-# r = requests.get(url)
-# print(r.text)
+print('\n')
+
+id_n = re.findall(r'"id":"([a-z0-9]+)', text)
+print(id_n)
+print('\n')
+
+
+# #GET
+print('GET')
+rg = requests.get(url+f"/{id_n[0]}")
+print(rg.text)
+print('\n')
+
+
+# # PUT
+print('PUT')
+dp = json.dumps({
+   "name": "RealmeXT",
+   "data": {"year": 2019, "price": 44444}})
+rp = requests.put(url+f"/{id_n[0]}", data=dp, headers={"content-type": "application/json"})
+print(rp.text)
+print('\n')
+
+
+
+# # PATCH
+print('PATCH')
+rpp = requests.patch(url+f"/{id_n[0]}", data=json.dumps({"name":"RealmeXT new"}), headers={"content-type": "application/json"})
+print(rpp.text)
+print('\n')
+
+
+
+# # DELETE
+print('DELETE')
+rd = requests.delete(url+f"/{id_n[0]}")
+print(rd.status_code)
+
 
 
 
