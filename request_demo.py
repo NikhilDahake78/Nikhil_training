@@ -16,19 +16,14 @@ d = json.dumps({
    "name": "RealmeXT",
    "data": {"year": 2020, "price": 500000}})
 
-
 # # POST
 r = requests.post(url, data=d, headers= {"content-type": "application/json"})
 text = r.text
 print('POST')
 print(text)
-
-print('Header')
-print(r.headers)
-
-
 print('\n')
 
+# fetching ID
 id_n = re.findall(r'"id":"([a-z0-9]+)', text)
 print(id_n)
 print('\n')
@@ -39,6 +34,21 @@ print('GET')
 rg = requests.get(url+f"/{id_n[0]}")
 print(rg.text)
 print('\n')
+
+
+# # HEAD
+print('HEAD')
+rh = requests.head(url)
+print(rh.headers)
+print('\n')
+
+
+# # TRACE
+print('OPTION')
+rh = requests.options(url)
+print(rh.headers)
+print('\n')
+
 
 
 # # PUT
