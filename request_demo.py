@@ -16,12 +16,13 @@ d = json.dumps({
    "name": "RealmeXT",
    "data": {"year": 2020, "price": 500000}})
 
-# # POST
-r = requests.post(url, data=d, headers= {"content-type": "application/json"})
+# # POST "content-type": "application/json"
+r = requests.post(url, data=d, headers= {'content-type': "application/json"})
 text = r.text
 print('POST')
 print(text)
 print('\n')
+# print(r.headers)
 
 # fetching ID
 id_n = re.findall(r'"id":"([a-z0-9]+)', text)
@@ -31,23 +32,24 @@ print('\n')
 
 # #GET
 print('GET')
-rg = requests.get(url+f"/{id_n[0]}")
+rg = requests.get(url, params={'id': id_n[0]})
 print(rg.text)
-print('\n')
+obj_url = rg.url
+print(f'{type(obj_url)}   {obj_url} \n')
 
 
 # # HEAD
-print('HEAD')
-rh = requests.head(url)
-print(rh.headers)
-print('\n')
+# print('HEAD')
+# rh = requests.head(url)
+# print(rh.headers)
+# print('\n')
 
 
-# # TRACE
-print('OPTION')
-rh = requests.options(url)
-print(rh.headers)
-print('\n')
+# # OPTION
+# print('OPTION')
+# rh = requests.options(url)
+# print(rh.headers)
+# print('\n')
 
 
 
@@ -56,7 +58,7 @@ print('PUT')
 dp = json.dumps({
    "name": "RealmeXT",
    "data": {"year": 2019, "price": 44444}})
-rp = requests.put(url+f"/{id_n[0]}", data=dp, headers={"content-type": "application/json"})
+rp = requests.put(url + f'/{id_n[0]}', data=dp, headers={"content-type": "application/json"})
 print(rp.text)
 print('\n')
 
@@ -64,7 +66,7 @@ print('\n')
 
 # # PATCH
 print('PATCH')
-rpp = requests.patch(url+f"/{id_n[0]}", data=json.dumps({"name":"RealmeXT new"}), headers={"content-type": "application/json"})
+rpp = requests.patch(url + f'/{id_n[0]}', data=json.dumps({"name":"RealmeXT new"}), headers={"content-type": "application/json"})
 print(rpp.text)
 print('\n')
 
@@ -72,7 +74,7 @@ print('\n')
 
 # # DELETE
 print('DELETE')
-rd = requests.delete(url+f"/{id_n[0]}")
+rd = requests.delete(url + f'/{id_n[0]}')
 print(rd.status_code)
 
 
