@@ -6,3 +6,8 @@ def firefox_setup(playwright:Playwright):
     browser = playwright.firefox.launch(headless=False)
     firefox_page = browser.new_page()
     return  firefox_page
+
+
+# @pytest.fixture(scope="session")
+# def userCredentials(request):
+#     return request.params

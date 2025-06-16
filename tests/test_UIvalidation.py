@@ -5,7 +5,7 @@ from playwright.sync_api import Page, expect, Playwright
 from pageObjects.login import LoginPage
 
 
-def test_UIvalidation_dynamic(playwright:Playwright):
+def test_UIvalidation_dynamic(page:Page):
 
     # page.goto("https://rahulshettyacademy.com/loginpagePractise/")
     # page.get_by_label('Username:').fill("rahulshettyacademy")
