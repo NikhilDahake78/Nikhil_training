@@ -7,7 +7,7 @@ from pageObjects.dashboard import DashboardPage
 from pageObjects.login import LoginPage
 
 # data from json
-with open('../data/credentials.json') as f:
+with open('data/credentials.json') as f:
     test_data = json.load(f)
     # print('Inside open')
     user_cred_list = test_data['user_credentials']
@@ -15,10 +15,10 @@ with open('../data/credentials.json') as f:
 
 
 @pytest.mark.parametrize('userCredentials', user_cred_list)
-def test_check_login(page:Page, userCredentials):
+def test_check_login(browserInstance, userCredentials):
 
     # Login Page
-    loginPage = LoginPage(page)
+    loginPage = LoginPage(browserInstance)
     loginPage.navigate()
     dashboardPage = loginPage.login(userCredentials['username'], userCredentials['password'])
     loginPage.validate_login()
@@ -33,5 +33,3 @@ def test_check_login(page:Page, userCredentials):
     # Order details page
     orderDetailsPage.verifyOrderMessage()
 
-
-    sleep(2)

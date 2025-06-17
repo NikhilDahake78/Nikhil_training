@@ -34,7 +34,7 @@ def test_locators(page:Page):
     page.get_by_role("link", name="terms and conditions").click()
     page.get_by_role("button", name="Sign In").click()
 
-
+@pytest.mark.negative
 def test_wrong_login(page:Page):
     page.goto("https://rahulshettyacademy.com/loginpagePractise/")
     page.get_by_label("Username:").fill("rahulshettyacademy")

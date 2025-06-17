@@ -1,21 +1,23 @@
 import time
 
+import pytest
 from playwright.sync_api import Page, expect, Playwright
+from pytest_playwright.pytest_playwright import launch_browser
 
 from pageObjects.login import LoginPage
 
 
-def test_UIvalidation_dynamic(page:Page):
+def test_UIvalidation_dynamic(page:Page, browserInstance):
 
-    # page.goto("https://rahulshettyacademy.com/loginpagePractise/")
-    # page.get_by_label('Username:').fill("rahulshettyacademy")
-    # page.get_by_label('Password:').fill('learning')
-    # page.get_by_role('combobox').select_option('teach')
-    # page.get_by_role('checkbox', name='terms').click()
-    # page.get_by_role('link', name= 'terms and conditions').click()
-    # page.get_by_role('button', name='Sign In').click()
+    page.goto("https://rahulshettyacademy.com/loginpagePractise/")
+    page.get_by_label('Username:').fill("rahulshettyacademy")
+    page.get_by_label('Password:').fill('learning')
+    page.get_by_role('combobox').select_option('teach')
+    page.get_by_role('checkbox', name='terms').click()
+    page.get_by_role('link', name= 'terms and conditions').click()
+    page.get_by_role('button', name='Sign In').click()
 
-    LoginPage.login()
+    # LoginPage.login(browserInstance)
 
     iphone_obj = page.locator('app-card').filter(has_text='iphone X')
     iphone_obj.get_by_role('button').click()
@@ -25,10 +27,9 @@ def test_UIvalidation_dynamic(page:Page):
 
     page.get_by_text('Checkout ').click()
     expect(page.locator('.media')).to_have_count(2)
-    time.sleep(5)
 
 
-
+@pytest.mark.negative
 def test_childWindowHandle(page:Page):
     page.goto("https://rahulshettyacademy.com/loginpagePractise/")
 
