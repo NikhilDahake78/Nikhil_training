@@ -1,3 +1,4 @@
+from time import sleep
 from tkinter.font import names
 
 import pytest
@@ -33,6 +34,8 @@ def test_locators(page:Page):
     page.get_by_role('checkbox', name='terms').click()
     page.get_by_role("link", name="terms and conditions").click()
     page.get_by_role("button", name="Sign In").click()
+    # page.locator("//div/input[@id='signInBtn']").click()
+    sleep(2)
 
 @pytest.mark.negative
 def test_wrong_login(page:Page):

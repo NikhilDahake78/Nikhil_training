@@ -1,9 +1,6 @@
 import json
 import pytest
-from playwright.sync_api import Page, expect, Playwright
-from time import sleep
 
-from pageObjects.dashboard import DashboardPage
 from pageObjects.login import LoginPage
 
 # data from json

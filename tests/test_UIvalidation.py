@@ -28,10 +28,12 @@ def test_UIvalidation_dynamic(page:Page, browserInstance):
     page.get_by_text('Checkout ').click()
     expect(page.locator('.media')).to_have_count(2)
 
-
+# tagging concept: to run use:  --negative
 @pytest.mark.negative
 def test_childWindowHandle(page:Page):
     page.goto("https://rahulshettyacademy.com/loginpagePractise/")
+    # page.wait_for_timeout(3000)
+
 
     with page.expect_popup() as new_page:
         page.get_by_role('link', name='Free Access to InterviewQues/ResumeAssistance/Material').click()

@@ -79,9 +79,6 @@ print(rd.status_code)
 
 
 
-
-
-
 # ----------------------------------------------------------------------------------------
 
 
@@ -104,12 +101,4 @@ print(rd.status_code)
 
 # Timeout
 # r = requests.get('https://httpbin.org/delay/3', timeout=2)
-
-
-
-
-
-
-
-
 
