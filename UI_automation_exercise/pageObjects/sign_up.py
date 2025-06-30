@@ -1,47 +1,50 @@
 from playwright.sync_api import expect
+from locators.sign_up_page_locators import RoleLocators, PathLocators
 
 
 class SignUpPage:
 
     def __init__(self, page):
         self.page = page
-
+        self.locators = RoleLocators(self.page)
+        self.pathLocator = PathLocators(self.page)
 
     def page_varification(self):
-        expect(self.page.locator("//div/h2[@class='title text-center']")).to_contain_text("Enter Account Information")
+        expect(self.pathLocator.ACCOUNT_INFO).to_contain_text("Enter Account Information")
 
 
     def enter_user_details(self, user_cred_list):
 
         if user_cred_list["gender"] == 'male':
-            self.page.locator("#uniform-id_gender1").click()
+            self.pathLocator.MALE_OPT.click()
         elif user_cred_list["gender"] == 'female':
-            self.page.locator("#uniform-id_gender2").click()
+            self.pathLocator.FEMALE_OPT.click()
 
-        self.page.get_by_label("password").fill(user_cred_list["password"])
+        self.locators.PASSWORD.fill(user_cred_list["password"])
 
         # select DOB
-        self.page.locator("#days").select_option(value='7')
-        self.page.locator("#months").select_option(value='8')
-        self.page.locator("#years").select_option(value='2000')
+        self.pathLocator.SELECT_DATE('7')
+        self.pathLocator.SELECT_MONTH('8')
+        self.pathLocator.SELECT_YEAR('2000')
+
 
         # checkbox
-        self.page.get_by_role('checkbox', name='newsletter').click()
+        self.locators.NEWSLETTER_CHECKBOX.click()
 
         # First and last name
         names = user_cred_list["name"].split(' ')
-        self.page.locator('#first_name').fill(names[0])
-        self.page.locator('#last_name').fill(names[1])
+        self.pathLocator.FIRST_NAME.fill(names[0])
+        self.pathLocator.LAST_NAME.fill(names[1])
 
-        self.page.locator("#address1").fill(user_cred_list["address"])
-        self.page.locator("#state").fill(user_cred_list["state"])
-        self.page.locator("#city").fill(user_cred_list["city"])
-        self.page.locator("#zipcode").fill(user_cred_list["zip"])
-        self.page.locator("#mobile_number").fill(user_cred_list["phone"])
+        self.pathLocator.ADDRESS.fill(user_cred_list["address"])
+        self.pathLocator.STATE.fill(user_cred_list["state"])
+        self.pathLocator.CITY.fill(user_cred_list["city"])
+        self.pathLocator.ZIPCODE.fill(user_cred_list["zip"])
+        self.pathLocator.MOBILE_NO.fill(user_cred_list["phone"])
 
-        self.page.get_by_role('button', name="Create Account").click()
+        self.locators.BTN_ACCOUNT_CREATE.click()
 
 
     def varify_sign_up_and_continue(self):
-        expect(self.page.locator('.title.text-center')).to_contain_text("Account Created!")
-        self.page.get_by_role('link', name="Continue").click()
+        expect(self.pathLocator.ACCOUNT_CREATED).to_contain_text("Account Created!")
+        self.locators.LINK_CONTINUE.click()
