@@ -1,5 +1,5 @@
 {
-  "user_credentials": [{
+  "user_1": {
     "name" : "abc def",
     "mail" : "nickdam@gmail.com",
     "password": "abcdef@123",
@@ -9,7 +9,19 @@
     "zip": "111",
     "phone": "9876543210",
     "gender": "male",
-    "DOB": "7-8-2000"
+    "DOB": "13-2-1993"
+  },
+
+  "user_2": {
+    "name" : "ijk lmn def",
+    "mail" : "ijklmn@gmail.com",
+    "password": "ijklmn@123",
+    "address": "abc ghi def ",
+    "state": "xyz",
+    "city": "mno",
+    "zip": "333",
+    "phone": "9876543210",
+    "gender": "female",
+    "DOB": "5-8-1998"
   }
-  ]
 }
