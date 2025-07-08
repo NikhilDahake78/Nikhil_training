@@ -4,22 +4,10 @@ from time import sleep
 from playwright.sync_api import Playwright, expect, Page
 from pageObjects.home import HomePage
 from pageObjects.login_sign_up import LoginSignUpPage
-from config.config_automation_exe import ConfigInfo
-from data.user_data import UserData
-
-
-init_config = ConfigInfo()
-
-with open('data/user_info.json') as f:
-    test_data = json.load(f)
-    global user_cred_list
-    user_cred_list = test_data['user_1']
-
 
 
 def test_register_user(my_browser):
     user_id = "user_1"
-    user_data = UserData("user_1")
 
     # home page navigation
     homePage = HomePage(my_browser)
