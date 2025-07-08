@@ -2,6 +2,7 @@ from playwright.sync_api import expect
 from pageObjects.login_sign_up import LoginSignUpPage
 from locators.home_page_locators import *
 from config.config_automation_exe import ConfigInfo
+from data.user_data import UserData
 
 
 class HomePage:
@@ -12,8 +13,7 @@ class HomePage:
         self.pathLocators = PathLocators(self.page)
 
     def navigate(self):
-        print(f"URL from config: {ConfigInfo.URL}") ## debug
-        self.page.goto(ConfigInfo.URL)
+        self.page.goto(ConfigInfo().get_home_url())
         return self.page
 
 
@@ -22,8 +22,8 @@ class HomePage:
         expect(self.locators.BTN_API_LIST).to_be_visible()
 
 
-    def varify_page_with_user_sign_in(self, user_name):
-        expect(self.pathLocators.USERNAME_XPATH).to_contain_text(user_name)
+    def varify_page_with_user_sign_in(self, user_id):
+        expect(self.pathLocators.USERNAME_XPATH).to_contain_text(UserData(user_id).get('name'))
 
 
     def login_sign_up(self):
