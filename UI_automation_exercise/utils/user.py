@@ -2,7 +2,7 @@ from pageObjects.home import HomePage
 from pageObjects.login_sign_up import LoginSignUpPage
 from utils.Logging import Log
 
-
+# just to check github action
 def create_new_user(user_id, page):
 
     # home page navigation
