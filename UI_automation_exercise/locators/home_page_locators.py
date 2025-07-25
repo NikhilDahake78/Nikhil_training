@@ -26,6 +26,22 @@ class RoleLocators:
     def LINK_CONTINUE(self):
         return self.page.get_by_role("link", name="Continue")
 
+    @property
+    def LINK_CONTACT_US(self):
+        return self.page.get_by_role("link", name=" Contact us")
+
+    @property
+    def LINK_TESTS_CASES(self):
+        return self.page.get_by_role("link", name=" Test Cases")
+
+    @property
+    def LINK_PRODUCT(self):
+        return self.page.get_by_role("link", name=" Products")
+
+    @property
+    def LINK_CART(self):
+        return self.page.get_by_role("link", name=" Cart")
+
 
 class PathLocators:
     def __init__(self, page):

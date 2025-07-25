@@ -1,5 +1,4 @@
 from random import choices
-
 import pytest
 from playwright.sync_api import Playwright
 
